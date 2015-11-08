@@ -1,0 +1,32 @@
+{
+    "name": "hamedmehryar/laravel-chat",
+    "description": "Chat feature for laravel",
+    "keywords": ["laravel", "chat", "messaging", "user messaging"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Hamed mehryar",
+            "email": "hamed@netlinks.af",
+            "homepage": "https://github.com/hamedmehryar",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/config": "~5.0",
+        "illuminate/support": "~5.0",
+        "illuminate/database": "~5.0",
+        "nesbot/carbon": "~1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.*",
+        "adamwathan/faktory": "0.3.*",
+        "fabpot/php-cs-fixer": "1.0.*@dev"
+    },
+    "autoload": {
+        "psr-0": {
+            "Hamedmehryar\\Chat\\": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}
