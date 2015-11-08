@@ -12,8 +12,8 @@ class ChatServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            base_path('vendor/hamedmehryar/chat/src/config/config.php') => config_path('chat.php'),
-            base_path('vendor/hamedmehryar/chat/src/migrations') => base_path('database/migrations'),
+            base_path('vendor/hamedmehryar/laravel-chat/src/config/config.php') => config_path('chat.php'),
+            base_path('vendor/hamedmehryar/laravel-chat/src/migrations') => base_path('database/migrations'),
         ]);
     }
 
@@ -25,7 +25,7 @@ class ChatServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(
-            base_path('vendor/hamedmehryar/chat/src/config/config.php'), 'chat'
+            base_path('vendor/hamedmehryar/laravel-chat/src/config/config.php'), 'chat'
         );
     }
 }
