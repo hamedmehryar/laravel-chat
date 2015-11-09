@@ -49,6 +49,10 @@ Add the trait to your user model:
     	use Chatable;
     }
 
+Add smiley.css file to your page
+
+    <link rel="stylesheet" href="../path/to/your/public/chat/smiley.css" >
+
 
 __Note:__ These examples use the [laravelcollective/html](http://laravelcollective.com/docs/5.0/html) package that is no longer included in Laravel 5 out of the box. Make sure you require this dependency in your `composer.json` file if you intend to use the example files.
 
