@@ -74,4 +74,32 @@ class Message extends Eloquent
     {
         return $this->participants()->where('user_id', '!=', $this->user_id);
     }
+
+    /**
+     * mutator for message body that replaces smiley codes with smiley images
+     *
+     * @param $value
+     *
+     * @return string
+     */
+    public function getBodyAttribute($value){
+        $value = str_replace(':)', '<div class="smiley smile"></div>', $value);
+        $value = str_replace(':-)', '<div class="smiley smile"></div>', $value);
+        $value = str_replace(':(', '<div class="smiley sad"></div>', $value);
+        $value = str_replace(':-(', '<div class="smiley sad"></div>', $value);
+        $value = str_replace('>:', '<div class="smiley angry"></div>', $value);
+        $value = str_replace('>:-', '<div class="smiley angry"></div>', $value);
+        $value = str_replace(':o', '<div class="smiley surprised"></div>', $value);
+        $value = str_replace(':-o', '<div class="smiley surprised"></div>', $value);
+        $value = str_replace(':s', '<div class="smiley confused"></div>', $value);
+        $value = str_replace(':-s', '<div class="smiley confused"></div>', $value);
+        $value = str_replace(':D', '<div class="smiley laugh"></div>', $value);
+        $value = str_replace(':-D', '<div class="smiley laugh"></div>', $value);
+        $value = str_replace(';)', '<div class="smiley wink"></div>', $value);
+        $value = str_replace(';-)', '<div class="smiley wink"></div>', $value);
+        $value = str_replace(':|', '<div class="smiley speechless"></div>', $value);
+        $value = str_replace(':-|', '<div class="smiley speechless"></div>', $value);
+        return $value;
+
+    }
 }

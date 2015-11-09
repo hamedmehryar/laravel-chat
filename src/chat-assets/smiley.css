@@ -1,0 +1,45 @@
+.smiley{
+    background-image: url('/chat-images/emotions.png');
+    background-repeat: no-repeat;
+    display: inline-block;
+}
+.smiley.smile {
+    background-position: -30px 0px;
+    height: 25px;
+    width: 25px;
+}
+.smiley.sad {
+    background-position: -93px 0px;
+    height: 25px;
+    width: 26px;
+}
+.smiley.angry {
+    background-position: -124px -31px;
+    height: 25px;
+    width: 26px;
+}
+.smiley.surprised {
+    background-position: 1px -31px;
+    height: 25px;
+    width: 26px;
+}
+.smiley.confused {
+    background-position: -61px -31px;
+    height: 25px;
+    width: 26px;
+}
+.smiley.laugh {
+    background-position: 0px 0px;
+    height: 25px;
+    width: 25px;
+}
+.smiley.wink {
+    background-position: -30px -62px;
+    height: 25px;
+    width: 28px;
+}
+.smiley.speechless {
+    background-position: -61px 0px;
+    height: 25px;
+    width: 28px;
+}
