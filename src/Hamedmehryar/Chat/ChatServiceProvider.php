@@ -14,6 +14,7 @@ class ChatServiceProvider extends ServiceProvider
         $this->publishes([
             base_path('vendor/hamedmehryar/laravel-chat/src/config/config.php') => config_path('chat.php'),
             base_path('vendor/hamedmehryar/laravel-chat/src/migrations') => base_path('database/migrations'),
+            base_path('vendor/hamedmehryar/laravel-chat/src/chat-images') => base_path('public/chat-images')
         ]);
     }
 

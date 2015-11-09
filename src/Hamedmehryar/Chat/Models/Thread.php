@@ -325,4 +325,43 @@ class Thread extends Eloquent
         $userModel = Config::get('chat.user_model');
         return $this->usersTable = (new $userModel)->getTable();
     }
+
+
+    /**
+     * Returns the threads in which the user exists (chuncked)
+     *
+     * @param $user
+     * @param $end
+     * @param $limit
+     *
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public static function userLatestThreadsChuncked($user, $end, $limit){
+
+        if($end != null){
+
+            $threads = self::latest('updated_at')->where('updated_at', '<', $end)->with(
+                [
+                    'participants' =>
+                        function ($query) use($user){
+                            $query->where('user_id', '=', $user->id);
+
+                        }
+                ]
+            )->limit($limit)->get();
+        }else{
+
+            $threads = self::latest('updated_at')->with(
+                [
+                    'participants' =>
+                        function ($query) use($user){
+                            $query->where('user_id', '=', $user->id);
+
+                        }
+                ]
+            )->limit($limit)->get();
+        }
+
+        return $threads;
+    }
 }
