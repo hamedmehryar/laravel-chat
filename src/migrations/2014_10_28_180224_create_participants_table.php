@@ -17,6 +17,7 @@ class CreateParticipantsTable extends Migration
             $table->integer('thread_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->timestamp('last_read');
+            $table->timestamp('last_poll')->default('0000-00-00 00:00:00');
             $table->timestamps();
         });
     }
