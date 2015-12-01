@@ -2,6 +2,7 @@
 
 use Hamedmehryar\Chat\Models\Thread;
 use Hamedmehryar\Chat\Models\Participant;
+use Carbon\Carbon;
 
 trait Chatable
 {
