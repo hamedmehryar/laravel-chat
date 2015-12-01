@@ -67,4 +67,43 @@ trait Chatable
 
         return $threadsWithNewMessages;
     }
+
+
+    public function newMessagesCountForPoll()
+    {
+        $newMessagesCount = 0;
+        foreach($this->threadsWithNewMessagesForPoll() as $thread){
+            $allMessagesCount = $thread->messages()->where('user_id', '!=', $this->id)->where('created_at', '>', $thread->getParticipantFromUser($this->id)->last_poll)->orderBy('id', 'desc')->limit(100)->count();
+            $newMessagesCount += $allMessagesCount;
+        }
+        return $newMessagesCount;
+    }
+    public function threadsWithNewMessagesForPoll(){
+
+        $updatedThreadsIds = $this->threadsWithNewMessages();
+        $updatedThreads = Thread::whereIn('id', $updatedThreadsIds)->get();
+        $updatedThreads = $updatedThreads->filter(function($thread)
+        {
+            return strtotime($thread->updated_at) >= strtotime($thread->getParticipantFromUser($this->id)->last_poll);
+        });
+
+        foreach ($updatedThreads as $thread){
+            foreach($thread->messages as $message){
+                $message->timeDiffForHumen = $message->created_at->diffForHumans();
+                $message->senderDetails = $message->user->first_name." ".$message->user->last_name;
+            }
+        }
+        return $updatedThreads;
+
+    }
+
+    public function pollSuccessForThreads($threads){
+
+        foreach($threads as $thread){
+            $participant = $thread->getParticipantFromUser($this->id);
+            $participant->last_poll = new Carbon;
+            $participant->save();
+        }
+
+    }
 }
