@@ -92,6 +92,7 @@ trait Chatable
             foreach($thread->messages as $message){
                 $message->timeDiffForHumen = $message->created_at->diffForHumans();
                 $message->senderDetails = $message->user->first_name." ".$message->user->last_name;
+                $message->layout = ($message->user_id==$this->id?"right":"left");
             }
         }
         return $updatedThreads;
