@@ -96,7 +96,7 @@ class Thread extends Eloquent
      */
     public function participantsUserIds($userId = null)
     {
-        $users = $this->participants()->withTrashed()->lists('user_id');
+        $users = $this->participants()->lists('user_id');
 
         if ($userId) {
             $users[] = $userId;
@@ -221,16 +221,6 @@ class Thread extends Eloquent
         return $this->participants()->where('user_id', $userId)->firstOrFail();
     }
 
-    /**
-     * Restores all participants within a thread that has a new message
-     */
-    public function activateAllParticipants()
-    {
-        $participants = $this->participants()->withTrashed()->get();
-        foreach ($participants as $participant) {
-            $participant->restore();
-        }
-    }
 
     /**
      * Generates a string of participant information
@@ -340,28 +330,27 @@ class Thread extends Eloquent
 
         if($end != null){
 
-            $threads = self::latest('updated_at')->where('updated_at', '<', $end)->with(
-                [
-                    'participants' =>
+            $threads = self::latest('updated_at')->where('updated_at', '<', $end)->whereHas('participants',
                         function ($query) use($user){
                             $query->where('user_id', '=', $user->id);
 
                         }
-                ]
             )->limit($limit)->get();
         }else{
 
-            $threads = self::latest('updated_at')->with(
-                [
-                    'participants' =>
-                        function ($query) use($user){
-                            $query->where('user_id', '=', $user->id);
+            $threads = self::latest('updated_at')->whereHas('participants',
+                function ($query) use($user){
+                    $query->where('user_id', '=', $user->id);
 
-                        }
-                ]
+                }
             )->limit($limit)->get();
         }
 
         return $threads;
+    }
+
+    public function removeParticipant($userId){
+
+        $this->participants()->where('user_id', $userId)->delete();
     }
 }

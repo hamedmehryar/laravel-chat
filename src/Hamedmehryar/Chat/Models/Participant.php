@@ -2,11 +2,9 @@
 
 use Illuminate\Support\Facades\Config;
 use Illuminate\Database\Eloquent\Model as Eloquent;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Participant extends Eloquent
 {
-    use SoftDeletes;
 
     /**
      * The database table used by the model.
@@ -27,7 +25,7 @@ class Participant extends Eloquent
      *
      * @var array
      */
-    protected $dates = ['created_at', 'updated_at', 'deleted_at', 'last_read'];
+    protected $dates = ['created_at', 'updated_at', 'last_read'];
 
     /**
      * Thread relationship

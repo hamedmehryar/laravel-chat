@@ -2,6 +2,7 @@
 
 use Hamedmehryar\Chat\Models\Thread;
 use Hamedmehryar\Chat\Models\Participant;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Carbon\Carbon;
 
 trait Chatable
@@ -107,5 +108,15 @@ trait Chatable
             $participant->save();
         }
 
+    }
+
+    public function leaveThread($id){
+        try {
+            $thread = Thread::findOrFail($id);
+        } catch (ModelNotFoundException $e) {
+            return false;
+        }
+        Thread::find($id)->removeParticipant($this->id);
+        return true;
     }
 }
