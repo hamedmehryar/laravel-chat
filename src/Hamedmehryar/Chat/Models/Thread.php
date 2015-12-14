@@ -116,7 +116,6 @@ class Thread extends Eloquent
     {
         return $query->join('participants', 'threads.id', '=', 'participants.thread_id')
             ->where('participants.user_id', $userId)
-            ->where('participants.deleted_at', null)
             ->select('threads.*');
     }
 
@@ -131,7 +130,6 @@ class Thread extends Eloquent
     {
         return $query->join('participants', 'threads.id', '=', 'participants.thread_id')
             ->where('participants.user_id', $userId)
-            ->whereNull('participants.deleted_at')
             ->where(function ($query) {
                 $query->where('threads.updated_at', '>', $this->getConnection()->raw($this->getConnection()->getTablePrefix() . 'participants.last_read'))
                     ->orWhereNull('participants.last_read');
