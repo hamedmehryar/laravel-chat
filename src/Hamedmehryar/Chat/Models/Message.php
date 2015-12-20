@@ -87,8 +87,8 @@ class Message extends Eloquent
         $value = str_replace(':-)', '<div class="smiley smile"></div>', $value);
         $value = str_replace(':(', '<div class="smiley sad"></div>', $value);
         $value = str_replace(':-(', '<div class="smiley sad"></div>', $value);
-        $value = str_replace('>:', '<div class="smiley angry"></div>', $value);
-        $value = str_replace('>:-', '<div class="smiley angry"></div>', $value);
+        $value = str_replace('|>:', '<div class="smiley angry"></div>', $value);
+        $value = str_replace('|>:-', '<div class="smiley angry"></div>', $value);
         $value = str_replace(':o', '<div class="smiley surprised"></div>', $value);
         $value = str_replace(':-o', '<div class="smiley surprised"></div>', $value);
         $value = str_replace(':s', '<div class="smiley confused"></div>', $value);
