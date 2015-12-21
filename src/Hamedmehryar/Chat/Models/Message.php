@@ -85,8 +85,7 @@ class Message extends Eloquent
     public function getBodyAttribute($value){
         $value = str_replace(':)', '<div class="smiley smile"></div>', $value);
         $value = str_replace(':-)', '<div class="smiley smile"></div>', $value);
-        $value = str_replace('>:(', '<div class="smiley angry"></div>', $value);
-        $value = str_replace('>:-(', '<div class="smiley angry"></div>', $value);
+        $value = str_replace('(angry)', '<div class="smiley angry"></div>', $value);
         $value = str_replace(':(', '<div class="smiley sad"></div>', $value);
         $value = str_replace(':-(', '<div class="smiley sad"></div>', $value);
         $value = str_replace(':o', '<div class="smiley surprised"></div>', $value);
