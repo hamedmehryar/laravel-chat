@@ -88,6 +88,9 @@ class Message extends Eloquent
      * @return string
      */
     public function getBodyAttribute($value){
+        if($this->type == Message::MESSAGE_TYPE_FILE){
+            return '<img src="/message/'.$this->thread_id.'/chat-att/'.$this->id.'" width="200"/>';
+        }
         $value = str_replace(':)', '<div class="smiley smile"></div>', $value);
         $value = str_replace(':-)', '<div class="smiley smile"></div>', $value);
         $value = str_replace('(angry)', '<div class="smiley angry"></div>', $value);
