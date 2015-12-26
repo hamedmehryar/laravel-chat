@@ -7,7 +7,7 @@ class Message extends Eloquent
 {
 
     const MESSAGE_TYPE_TEXT = 0;
-    const MESSAGE_TYPE_EVENT_add = 1;
+    const MESSAGE_TYPE_EVENT_ADD = 1;
     const MESSAGE_TYPE_EVENT_LEAVE = 2;
     const MESSAGE_TYPE_FILE = 3;
     /**
