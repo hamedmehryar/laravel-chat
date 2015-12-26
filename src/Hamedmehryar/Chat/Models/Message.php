@@ -5,6 +5,10 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
 
 class Message extends Eloquent
 {
+
+    const MESSAGE_TYPE_TEXT = 0;
+    const MESSAGE_TYPE_EVENT = 1;
+    const MESSAGE_TYPE_FILE = 2;
     /**
      * The database table used by the model.
      *
@@ -24,7 +28,7 @@ class Message extends Eloquent
      *
      * @var array
      */
-    protected $fillable = ['thread_id', 'user_id', 'body','type'];
+    protected $fillable = ['thread_id', 'user_id', 'body','type','mime','extension'];
 
     /**
      * Validation rules.

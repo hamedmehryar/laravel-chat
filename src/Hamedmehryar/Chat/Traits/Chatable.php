@@ -1,5 +1,6 @@
 <?php namespace Hamedmehryar\Chat\Traits;
 
+use Hamedmehryar\Chat\Models\Message;
 use Hamedmehryar\Chat\Models\Thread;
 use Hamedmehryar\Chat\Models\Participant;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -94,6 +95,9 @@ trait Chatable
                 $message->timeDiffForHumen = $message->created_at->diffForHumans();
                 $message->senderDetails = $message->user->first_name." ".$message->user->last_name;
                 $message->layout = ($message->user_id==$this->id?"right":"left");
+                if($message->type == Message::MESSAGE_TYPE_FILE){
+                    $message->body = '<img src="/message/'.$thread->id.'/chat-att/'.$message->id.'" width="200"/>';
+                }
             }
         }
         return $updatedThreads;
