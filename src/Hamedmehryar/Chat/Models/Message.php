@@ -29,7 +29,7 @@ class Message extends Eloquent
      *
      * @var array
      */
-    protected $fillable = ['thread_id', 'user_id', 'body','type','mime','extension'];
+    protected $fillable = ['thread_id', 'user_id', 'body','type','mime','extension','file_name'];
 
     /**
      * Validation rules.
